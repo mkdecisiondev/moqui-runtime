@@ -27,7 +27,7 @@ https://github.com/moqui/moqui-runtime/compare/v2.1.2...v2.1.3
 
 Moqui Runtime 2.1.2 is a patch level new feature and bug fix release, in parallel with the release of Moqui Framework.
 
-This release includes JavaScript library updates including Bootstrap 3.4.1, jQuery 3.4.1, jsTree 3.3.8, Moment.js 2.24.0, and Vue JS 2.6.10.
+This release includes JavaScript library updates including Bootstrap 3.4.1, jQuery 3.4.1, jsTree 3.3.8, Moment.js 2.29.4, and Vue JS 2.6.10.
 This was done mainly for security reasons and updates to JS code in this repository have been done to fix issues from the updates.
 
 There are various improvements to System and Tools app screens for usability and to better handle larger databases.
