@@ -1822,7 +1822,7 @@ Vue.component('m-chart', {
     data: function() { return { instance:null } },
     mounted: function() {
         var vm = this;
-        moqui.loadScript('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js', function(err) {
+        moqui.loadScript('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js', function(err) {
             if (err) return;
             vm.instance = new Chart(vm.$refs.canvas, vm.config);
         }, function() { return !!window.Chart; });
