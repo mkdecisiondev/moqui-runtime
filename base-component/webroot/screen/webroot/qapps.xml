@@ -55,6 +55,50 @@ along with this software (see the LICENSE.md file). If not, see
             // TODO migrate MoquiQzComponent.js to MoquiQzComponent.qvt.js
             footer_scripts.add('/js/qz-tray/MoquiQzComponent.js')
         }
+
+        // Workflow mixins
+        footer_scripts.add('https://cdn.jsdelivr.net/npm/draw2d@1.0.38/dist/draw2d.min.js')
+        footer_scripts.add('https://cdn.jsdelivr.net/npm/jqueryui@1.11.1/jquery-ui.min.js')
+        footer_scripts.add('https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js')
+
+        // Workflow mixins
+        footer_scripts.add('/workflow_assets/js/mixins/WorkflowActivityMixin.js')
+        footer_scripts.add('/workflow_assets/js/mixins/WorkflowCrowdActivityMixin.js')
+        footer_scripts.add('/workflow_assets/js/mixins/WorkflowGroupActivityMixin.js')
+        footer_scripts.add('/workflow_assets/js/mixins/WorkflowTimeoutActivityMixin.js')
+
+        // Workflow services
+        footer_scripts.add('/workflow_assets/js/services/EntityService.js')
+        footer_scripts.add('/workflow_assets/js/services/EnumerationService.js')
+        footer_scripts.add('/workflow_assets/js/services/StatusFlowService.js')
+        footer_scripts.add('/workflow_assets/js/services/UomService.js')
+        footer_scripts.add('/workflow_assets/js/services/UomGroupService.js')
+        footer_scripts.add('/workflow_assets/js/services/UserService.js')
+        footer_scripts.add('/workflow_assets/js/services/WorkflowService.js')
+        footer_scripts.add('/workflow_assets/js/services/WorkflowTypeService.js')
+
+        // Workflow shapes
+        footer_scripts.add('/workflow_assets/js/shapes/AdjustmentActivity.js')
+        footer_scripts.add('/workflow_assets/js/shapes/ConditionActivity.js')
+        footer_scripts.add('/workflow_assets/js/shapes/EnterActivity.js')
+        footer_scripts.add('/workflow_assets/js/shapes/ExitActivity.js')
+        footer_scripts.add('/workflow_assets/js/shapes/NotificationActivity.js')
+        footer_scripts.add('/workflow_assets/js/shapes/ServiceActivity.js')
+        footer_scripts.add('/workflow_assets/js/shapes/AgreementActivity.js')
+        footer_scripts.add('/workflow_assets/js/shapes/TaskActivity.js')
+
+        // Workflow props
+        footer_scripts.add('/workflow_assets/js/props/AdjustmentActivityProps.js')
+        footer_scripts.add('/workflow_assets/js/props/ConditionActivityProps.js')
+        footer_scripts.add('/workflow_assets/js/props/ExitActivityProps.js')
+        footer_scripts.add('/workflow_assets/js/props/NotificationActivityProps.js')
+        footer_scripts.add('/workflow_assets/js/props/AgreementActivityProps.js')
+        footer_scripts.add('/workflow_assets/js/props/ServiceActivityProps.js')
+        footer_scripts.add('/workflow_assets/js/props/TaskActivityProps.js')
+
+        // Workflow designer
+        footer_scripts.add('/workflow_assets/js/designer/Designer.js')
+        footer_scripts.add('/workflow_assets/js/dev/WorkflowDev.js')
     ]]></script></pre-actions>
 
     <widgets>
