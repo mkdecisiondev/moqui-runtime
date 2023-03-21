@@ -80,19 +80,25 @@ along with this software (see the LICENSE.md file). If not, see
         // Workflow shapes
         footer_scripts.add('/workflow_assets/js/shapes/AdjustmentActivity.js')
         footer_scripts.add('/workflow_assets/js/shapes/ConditionActivity.js')
+        footer_scripts.add('/workflow_assets/js/shapes/SwitchActivity.js')
+        footer_scripts.add('/workflow_assets/js/shapes/ReviewActivity.js')
         footer_scripts.add('/workflow_assets/js/shapes/EnterActivity.js')
         footer_scripts.add('/workflow_assets/js/shapes/ExitActivity.js')
         footer_scripts.add('/workflow_assets/js/shapes/NotificationActivity.js')
         footer_scripts.add('/workflow_assets/js/shapes/ServiceActivity.js')
         footer_scripts.add('/workflow_assets/js/shapes/AgreementActivity.js')
+        footer_scripts.add('/workflow_assets/js/shapes/EmailActivity.js')
         footer_scripts.add('/workflow_assets/js/shapes/TaskActivity.js')
 
         // Workflow props
         footer_scripts.add('/workflow_assets/js/props/AdjustmentActivityProps.js')
         footer_scripts.add('/workflow_assets/js/props/ConditionActivityProps.js')
+        footer_scripts.add('/workflow_assets/js/props/SwitchActivityProps.js')
+        footer_scripts.add('/workflow_assets/js/props/ReviewActivityProps.js')
         footer_scripts.add('/workflow_assets/js/props/ExitActivityProps.js')
         footer_scripts.add('/workflow_assets/js/props/NotificationActivityProps.js')
         footer_scripts.add('/workflow_assets/js/props/AgreementActivityProps.js')
+        footer_scripts.add('/workflow_assets/js/props/EmailActivityProps.js')
         footer_scripts.add('/workflow_assets/js/props/ServiceActivityProps.js')
         footer_scripts.add('/workflow_assets/js/props/TaskActivityProps.js')
 
