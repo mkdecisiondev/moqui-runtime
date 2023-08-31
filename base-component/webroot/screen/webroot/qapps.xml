@@ -56,6 +56,7 @@ along with this software (see the LICENSE.md file). If not, see
             footer_scripts.add('/js/qz-tray/MoquiQzComponent.js')
         }
 
+        /*
         // Workflow mixins
         footer_scripts.add('https://cdn.jsdelivr.net/npm/draw2d@1.0.38/dist/draw2d.min.js')
         footer_scripts.add('https://cdn.jsdelivr.net/npm/jqueryui@1.11.1/jquery-ui.min.js')
@@ -108,6 +109,7 @@ along with this software (see the LICENSE.md file). If not, see
 
         // Ignite Vue Components
         footer_scripts.add('/ignite_vue_components/js/prototype_ignite_vue.js')
+        */
 
     ]]></script></pre-actions>
 
