@@ -141,9 +141,13 @@ moqui.handleAjaxError = function(jqXHR, textStatus, errorThrown, responseText) {
 /* Override moqui.notifyGrowl */
 moqui.notifyGrowl = function(jsonObj) {
     if (!jsonObj) return;
-    // TODO: jsonObj.link, jsonObj.icon
-    moqui.webrootVue.$q.notify($.extend({}, moqui.notifyOptsInfo, { type:jsonObj.type, message:jsonObj.title }));
-    moqui.webrootVue.addNotify(jsonObj.title, jsonObj.type);
+    // TODO: jsonObj.icon
+    moqui.webrootVue.$q.notify($.extend({}, moqui.notifyOptsInfo, { type:jsonObj.type, message:jsonObj.title,
+        actions: [
+            { label: 'View', color: 'white', handler: function () { moqui.webrootVue.setUrl(jsonObj.link); } }
+        ]
+    }));
+    moqui.webrootVue.addNotify(jsonObj.title, jsonObj.type, jsonObj.link, jsonObj.icon);
 };
 
 /* ========== component loading methods ========== */
@@ -1005,7 +1009,7 @@ Vue.component('m-form-paginate', {
     name: "mFormPaginate",
     props: { paginate:Object, formList:Object },
     template:
-    '<div v-if="paginate" class="q-pagination row no-wrap items-center">' +
+    '<div v-if="paginate &amp;&amp; paginate.count > 1" class="q-pagination row no-wrap items-center">' +
         '<template v-if="paginate.pageIndex > 0">' +
             '<q-btn dense flat no-caps @click.prevent="setIndex(0)" icon="skip_previous"></q-btn>' +
             '<q-btn dense flat no-caps @click.prevent="setIndex(paginate.pageIndex-1)" icon="fast_rewind"></q-btn></template>' +
@@ -1852,9 +1856,38 @@ Vue.component('m-chart', {
     mounted: function() {
         var vm = this;
         moqui.loadScript('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js', function(err) {
-            if (err) return;
+            if (err) {
+                console.error("Error loading m-chart script: " + err);
+                return;
+            }
             vm.instance = new Chart(vm.$refs.canvas, vm.config);
         }, function() { return !!window.Chart; });
+    },
+    watch: {
+        config: function (val) {
+            if (this.instance) {
+                // console.info("updating m-chart")
+                if (val.type) this.instance.type = val.type;
+                if (val.labels) this.instance.labels = val.labels;
+                if (val.data) this.instance.data = val.data;
+                if (val.options) this.instance.options = val.options;
+                this.instance.update();
+            }
+        }
+    }
+});
+/* Lazy loading Mermaid JS wrapper component; for config options see https://mermaid.js.org/config/usage.html */
+Vue.component('m-mermaid', {
+    name: 'mMermaid',
+    props: { config:{type:Object,'default': function() { return {startOnLoad:true,securityLevel:'loose'} }},
+        height:{type:String,'default':'400px'}, width:{type:String,'default':'100%'} },
+    template: '<pre ref="mermaid" class="mermaid" :style="{height:height,width:width}"><slot></slot></pre>',
+    mounted: function() {
+        var vm = this;
+        moqui.loadScript('https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.3.0/mermaid.min.js', function(err) {
+            if (err) return;
+            mermaid.init(vm.config, vm.$refs.mermaid);
+        }, function() { return !!window.mermaid; });
     }
 });
 /* Lazy loading CK Editor wrapper component, based on https://github.com/ckeditor/ckeditor4-vue */
@@ -2229,13 +2262,13 @@ moqui.webrootVue = new Vue({
             this.urlListeners.push(urlListenerFunction);
         },
 
-        addNotify: function(message, type) {
+        addNotify: function(message, type, link, icon) {
             var histList = this.notifyHistoryList.slice(0);
             var nowDate = new Date();
             var nh = nowDate.getHours(); if (nh < 10) nh = '0' + nh;
             var nm = nowDate.getMinutes(); if (nm < 10) nm = '0' + nm;
             // var ns = nowDate.getSeconds(); if (ns < 10) ns = '0' + ns;
-            histList.unshift({message:message, type:type, time:(nh + ':' + nm)}); //  + ':' + ns
+            histList.unshift({message:message, type:type, time:(nh + ':' + nm), link:link, icon:icon}); //  + ':' + ns
             while (histList.length > 25) { histList.pop(); }
             this.notifyHistoryList = histList;
         },
@@ -2384,6 +2417,14 @@ moqui.webrootVue = new Vue({
             if (resp.loggedIn) {
                 this.reLoginPostLogin();
             }
+        },
+        qLayoutMinHeight: function(offset) {
+            // "offset" is a Number (pixels) that refers to the total
+            // height of header + footer that occupies on screen,
+            // based on the QLayout "view" prop configuration
+
+            // this is actually what the default style-fn does in Quasar
+            return { minHeight: offset ? `calc(100vh - ${offset}px)` : '100vh' }
         }
     },
     watch: {
