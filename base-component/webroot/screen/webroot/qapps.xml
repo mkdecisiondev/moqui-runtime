@@ -106,10 +106,10 @@ along with this software (see the LICENSE.md file). If not, see
         // Workflow designer
         footer_scripts.add('/workflow_assets/js/designer/Designer.js')
         footer_scripts.add('/workflow_assets/js/dev/WorkflowDev.js')
+        */
 
         // Ignite Vue Components
         footer_scripts.add('/ignite_vue_components/js/prototype_ignite_vue.js')
-        */
 
     ]]></script></pre-actions>
 
