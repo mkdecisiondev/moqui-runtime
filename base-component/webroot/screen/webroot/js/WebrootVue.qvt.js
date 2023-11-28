@@ -367,8 +367,11 @@ Vue.component('m-container-box', {
             '<slot name="header"></slot>' +
             '<q-space></q-space>' +
             '<slot name="toolbar"></slot>' +
+            '  <q-btn color="grey"  round flat dense :icon="isBodyOpen ? \'keyboard_arrow_up\' : \'keyboard_arrow_down\'" @click="toggleBody" />' +            
         '</q-card-actions>' +
+        '  <div v-show="isBodyOpen">' +
         '<q-card-section :class="{in:isBodyOpen}"><slot></slot></q-card-section>' +
+                        '  </div>' +
     '</q-card>',
     methods: { toggleBody: function() { this.isBodyOpen = !this.isBodyOpen; } }
 });
@@ -1138,8 +1141,13 @@ Vue.component('m-form-column-config', {
         generalFormFields: function() {
             var fields = this.$refs.mForm.fields;
             fields.formLocation = this.formLocation;
-            if (this.findParameters) for (var curKey in Object.keys(this.findParameters))
-                fields[curKey] = this.findParameters[curKey];
+            if (this.findParameters) {
+                var findParmKeys = Object.keys(this.findParameters);
+                for (var keyIdx = 0; keyIdx < findParmKeys.length; keyIdx++) {
+                    var curKey = findParmKeys[keyIdx];
+                    fields[curKey] = this.findParameters[curKey];
+                }
+            }
             console.log("Save column config " + this.formLocation + " Window Width " + window.innerWidth + " Quasar Platform: " + JSON.stringify(Quasar.Platform.is));
             if (window.innerWidth <= 600 || Quasar.Platform.is.mobile) fields._uiType = 'mobile';
         }
